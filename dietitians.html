@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Card Page</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"/>
+    
+    <style>
+        body {
+            background-color: #e0ece0;
+            margin-top: 50px;
+        }
+
+        .card {
+            
+            margin-top: 30px;
+            transition: transform 0.3s;
+            border-radius: 30px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .rounded-circle-img {
+            border-radius: 50%;
+            width: 190px; 
+            height: 190px;
+            object-fit:cover;
+            margin-top: 10px;
+            margin-left: 20px;
+            
+        }
+        .text-right-side {
+            position: absolute;
+            top: 35%;
+            left: 70%; 
+            transform: translate(-50%, -50%);
+        }
+        @media (max-width: 576px) {
+            .text-right-side {
+                position: static;
+                text-align: center;
+                margin-top: 10px; 
+            }
+        }
+
+        .centered-container {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .centered-container h1 {
+            color: #07380d; 
+            font-size: 4em; 
+            /
+        }
+        .pagination {
+            border-radius: 10px;
+            padding-top: 10px;
+        }
+
+        .page-item.active .page-link {
+            background-color: #28a745; 
+            border-color: #28a745; 
+        }
+
+        .page-link {
+            color: #28a745; 
+            border-radius: 10px;
+        }
+
+        .page-link:hover {
+            background-color: #218838; 
+            border-color: #218838; 
+        }
+
+        .page-item.disabled .page-link {
+            color: #b5b7b8; 
+            pointer-events: none; 
+            background-color: #e9ecef; 
+            border-color: #e9ecef; 
+        }
+
+
+    </style>
+</head>
+<body>
+
+     <!-- Navbar section -->
+     <nav class="navbar navbar-expand-lg" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <svg width="131" height="58" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.54084 48.8124C9.6841 50.847 13.368 52.8083 17.5377 54.3434V2.14917C17.5377 0.962317 16.5754 0 15.3887 0H6.37589C5.18915 0 4.22693 0.962317 4.22693 2.14917V44.5507C4.22693 46.2737 5.09751 47.8775 6.54542 48.8124H6.54084Z" fill="#8BD36D"/>
+                    <path d="M4.22693 73.3469V100.975C4.22693 102.161 5.18915 103.124 6.37589 103.124H15.3887C16.5754 103.124 17.5377 102.161 17.5377 100.975V79.3774C12.9419 77.3061 9.1343 74.6758 6.28883 72.3616C5.45949 71.688 4.22693 72.2837 4.22693 73.3469Z" fill="#8BD36D"/>
+                    <path d="M65.0805 44.4224V2.14917C65.0805 0.962317 64.1183 0 62.9315 0H53.9187C52.732 0 51.7698 0.962317 51.7698 2.14917V54.1143C55.4216 52.7487 59.0597 50.957 62.6749 48.7436C64.1733 47.8271 65.0851 46.182 65.0851 44.4224H65.0805Z" fill="#8BD36D"/>
+                    <path d="M63.0599 72.5083C59.2981 75.2577 55.5271 77.4757 51.7653 79.1528V100.975C51.7653 102.161 52.7275 103.124 53.9142 103.124H62.927C64.1138 103.124 65.076 102.161 65.076 100.975V73.5256C65.076 72.4899 63.8984 71.8942 63.0599 72.5083Z" fill="#8BD36D"/>
+                    <path d="M71.2158 55.8923L69.0623 53.7385C68.6041 53.2803 67.8801 53.239 67.367 53.6377C62.5238 57.3862 57.5386 60.7176 52.2738 63.128C51.5819 63.4579 50.8901 63.797 50.1707 64.0399L48.095 64.851C48.0676 64.8601 48.0355 64.8739 48.008 64.8831L45.8957 65.5338C45.5383 65.6392 45.1855 65.7766 44.8189 65.8545L43.7284 66.0974C42.2988 66.4778 40.8463 66.6611 39.3984 66.881C39.3709 66.881 39.3388 66.8902 39.3113 66.8902L37.1532 67.0643C36.4201 67.1376 35.6824 67.0826 34.9493 67.1056C29.066 67.0781 23.1781 65.6163 17.6109 63.0547C14.8297 61.7762 12.1034 60.2685 9.4916 58.5363C8.1766 57.684 6.89364 56.7721 5.63817 55.819C5.00585 55.347 4.38728 54.8612 3.78245 54.3617C3.47088 54.1189 3.17763 53.8668 2.87522 53.6194C2.3941 53.2115 1.69306 53.2115 1.21195 53.6194L-1.54642 55.9656C-2.06877 56.4101 -2.15125 57.1937 -1.72512 57.7344C-1.40438 58.1468 -1.08822 58.5272 -0.75373 58.9304C-0.17182 59.6132 0.42384 60.2685 1.03325 60.9146C2.24748 62.2161 3.56252 63.4075 4.90046 64.5852C7.62217 66.8764 10.5592 68.9706 13.7392 70.7074C16.9145 72.4533 20.3235 73.8647 23.8929 74.8316C27.4623 75.8031 31.192 76.3071 34.9309 76.3117C35.8657 76.2796 36.805 76.3117 37.7351 76.2155L40.4752 75.9451C40.5072 75.9451 40.5439 75.936 40.576 75.9314C42.395 75.6014 44.2232 75.3082 45.9782 74.7628L47.3161 74.3871C47.7606 74.2634 48.1867 74.0801 48.622 73.9288C49.4742 73.6172 50.3219 73.3056 51.1604 72.9711C51.1879 72.9619 51.2154 72.9482 51.2429 72.9344C52.8787 72.1554 54.5603 71.4543 56.0815 70.5057C62.0152 67.0964 67.1195 62.6606 71.3029 57.6153C71.7244 57.1066 71.6786 56.3597 71.2158 55.8923Z" fill="#1FB653"/>
+                    <path d="M72.87 47.1581C72.87 43.0018 76.0866 39.7391 80.4395 39.7391C84.7924 39.7391 88.0089 42.8048 88.0089 46.8648C88.0089 51.2182 84.8886 54.5817 80.4395 54.5817C75.9903 54.5817 72.87 51.3144 72.87 47.1627V47.1581Z" fill="#1FB653"/>
+                    <path d="M84.3342 62.1244H76.5493C75.5751 62.1244 74.7853 62.9143 74.7853 63.8887V101.355C74.7853 102.329 75.5751 103.119 76.5493 103.119H84.3342C85.3084 103.119 86.0983 102.329 86.0983 101.355V63.8887C86.0983 62.9143 85.3084 62.1244 84.3342 62.1244Z" fill="#8BD36D"/>
+                    <path d="M105.549 44H97.764C96.79 44 96 44.7898 96 45.7642V102.834C96 103.809 96.79 104.599 97.764 104.599H105.549C106.523 104.599 107.313 103.809 107.313 102.834V45.7642C107.313 44.7898 106.523 44 105.549 44Z" fill="#8BD36D"/>
+                    <path d="M172.285 42H164.715C163.768 42 163 42.8081 163 43.805V102.194C163 103.192 163.768 104 164.715 104H172.285C173.233 104 174 103.192 174 102.194V43.805C174 42.8081 173.233 42 172.285 42Z" fill="#8BD36D"/>
+                    <path d="M96.0008 43.5L96.0008 51.2848C96.0003 52.232 96.5391 53.0002 97.2042 53.0005L122.777 53.0121C123.442 53.0124 123.981 52.2447 123.982 51.2974L123.985 47.5001L123.985 43.7279C123.986 42.7807 123.447 42.0124 122.782 42.0121L97.2092 42.0005C96.5 42 96.0008 42.5 96.0008 43.5Z" fill="#8BD36D"/>
+                    <path d="M96.0043 65.5L96.0043 73.2848C96.0039 74.2321 96.5427 75.0002 97.2077 75.0005L122.78 75.0121C123.445 75.0124 123.985 74.2447 123.985 73.2974L123.989 69.5001L123.989 65.7279C123.989 64.7807 123.45 64.0124 122.785 64.0121L97.2127 64.0005C96.5035 64 96.0043 64.5 96.0043 65.5Z" fill="#8BD36D"/>
+                    <path d="M143.549 64H135.764C134.79 64 134 64.7899 134 65.7643V103.231C134 104.205 134.79 104.995 135.764 104.995H143.549C144.523 104.995 145.313 104.205 145.313 103.231V65.7643C145.313 64.7899 144.523 64 143.549 64Z" fill="#8BD36D"/>
+                    <path d="M132 47.419C132 43.2627 135.217 40 139.569 40C143.922 40 147.139 43.0657 147.139 47.1257C147.139 51.4791 144.019 54.8426 139.569 54.8426C135.12 54.8426 132 51.5753 132 47.4236V47.419Z" fill="#8BD36D"/>
+                    <path d="M155.004 65.7153L155.001 73.2848C155 74.2321 155.535 75.0002 156.196 75.0005L181.586 75.012C182.246 75.0123 182.782 74.2446 182.782 73.2974L182.786 65.7278C182.786 64.7806 182.251 64.0123 181.591 64.012L156.201 64.0005C155.54 64.0002 155.005 64.768 155.004 65.7153Z" fill="#8BD36D"/>
+                </svg>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              
+          
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active" id="homeNavItem">
+                <a class="nav-link active" aria-current="page" href="#how-it-works">How It Works</a>
+              </li>
+              <li class="nav-item" id="aboutNavItem">
+                <a class="nav-link" href="index.html">About Us</a>
+              </li>
+              <li class="nav-item" id="dietitiansNavItem">
+                <a class="nav-link" href="dietitians.html">Dietitians</a>
+              </li>
+              <li class="nav-item" id="businessNavItem">
+                <a class="nav-link" href="index.html">Business</a>
+              </li>
+              <li class="nav-item" id="joinUsNavItem">
+                <a class="nav-link" href="register.html">Join Us</a>
+              </li>
+            </ul>
+            <!-- Navbar buttons -->
+            <div class="d-flex ms-auto">
+                <button class="login_btn btn-primary me-2" type="button" id="loginButton">Login</button>
+                <button class="register_btn btn-primary" type="button" id="registerButton">Register</button>
+            </div>
+           </div>
+        </div>
+    </nav>
+
+
+
+    <body>
+        <div class="centered-container">
+            <h1>Dietitians</h1>
+        </div>
+
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <!-- Card 1 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/nura2.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She graduated from Nisantasi University, Department of Psychology. She wrote her undergraduate thesis on "Parenting Stress and Postpartum Depression and its Relationship with Co-Parenting."</p>
+                        <p class="card-text text-right-side"><b>Nura Kaçan</b> <br> Dietitian</p>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/burak.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">Mr. Kalafat is currently on his 4th year of a doctoral program in Existential Counselling Psychology and Psychotherapy, working on his dissertation. As of December 2020, he has achieved the equivalence of MProf Level.</p>
+                        <p class="card-text text-right-side"><b>Burak Kalafat</b><br> Dietitian</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/sude.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She completed her undergraduate education at Marmara University, Department of Psychology. During her undergraduate studies, she had the opportunity to do many internships and volunteer work.</p>
+                        <p class="card-text text-right-side"><b>Sude Naz Yegin</b><br> Nutritionist</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/ayca.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She completed her psychology degree at Gelisim University. During this period, she completed his internship at the French Lape Psychiatric Hospital in order to gain experience. </p>
+                        <p class="card-text text-right-side">Ayçagul Çullu<br> Dietitian</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/berat.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">He graduated from Medipol University, Department of Psychology. He wrote her undergraduate thesis on "Parenting Stress and Postpartum Depression and its Relationship with Co-Parenting."</p>
+                        <p class="card-text text-right-side"><b>Berat Disçi</b><br> Dietitian</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/fatma.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">Mrs. Gunes is currently on his 4th year of a doctoral program in Existential Counselling Psychology and Psychotherapy, working on her dissertation. She wrote her undergraduate thesis on Parenting Stress. </p>
+                        <p class="card-text text-right-side"><b>Fatma Gunes</b><br> Nutritionist</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/burcu.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She graduated from Istanbul Technical University, Department of Psychology. She wrote her undergraduate thesis on "Parenting Stress and Postpartum Depression and its Relationship."</p>
+                        <p class="card-text text-right-side"><b>Burcu Bal</b><br> Dietitian</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/bugra.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">He graduated from Yeditepe University, Department of Psychology. He wrote her undergraduate thesis on "Parenting Stress and Postpartum Depression and its Relationship with Co-Parenting."</p>
+                        <p class="card-text text-right-side"><b>Bugra Akyol</b><br> Nutritionist</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/nurason.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She completed her psychology degree at Gelisim University. During this period, she completed his internship at the French Lape Psychiatric Hospital in order to gain experience.</p>
+                        <p class="card-text text-right-side"><b>Ayse Aydin</b><br> Nutritionist</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/ayca2.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">Mrs. Yildiz is currently on his 4th year of a doctoral program in Existential Counselling Psychology and Psychotherapy, working on her dissertation. She wrote her undergraduate thesis on Parenting Stress.</p>
+                        <p class="card-text text-right-side"><b>Yagmur Yildiz</b><br> Dietitian</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 11 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/sude2.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She completed her undergraduate education at Marmara University, Department of Psychology. During her undergraduate studies, she had the opportunity to do many internships.</p>
+                        <p class="card-text text-right-side"><b>Sema Celik</b><br> Nutritionist</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 12 -->
+            <div class="col">
+                <div class="card ">
+                    <img src="images/nura3.jpg" class="card-img-top rounded-circle-img" alt="Image 1">
+                    <div class="card-body" >
+                        <p class="card-text">She graduated from Nisantasi University, Department of Psychology. She wrote her undergraduate thesis on "Parenting Stress and Postpartum Depression and its Relationship."</p>
+                        <p class="card-text text-right-side"><b>Ela Demir</b><br> Nutritionist</p>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="container">
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Footer section -->
+    <footer id="footer">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        <a href="index.html">
+                          <svg width="131" height="58" viewBox="0 0 150 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.54084 48.8124C9.6841 50.847 13.368 52.8083 17.5377 54.3434V2.14917C17.5377 0.962317 16.5754 0 15.3887 0H6.37589C5.18915 0 4.22693 0.962317 4.22693 2.14917V44.5507C4.22693 46.2737 5.09751 47.8775 6.54542 48.8124H6.54084Z" fill="#8BD36D"/>
+                            <path d="M4.22693 73.3469V100.975C4.22693 102.161 5.18915 103.124 6.37589 103.124H15.3887C16.5754 103.124 17.5377 102.161 17.5377 100.975V79.3774C12.9419 77.3061 9.1343 74.6758 6.28883 72.3616C5.45949 71.688 4.22693 72.2837 4.22693 73.3469Z" fill="#8BD36D"/>
+                            <path d="M65.0805 44.4224V2.14917C65.0805 0.962317 64.1183 0 62.9315 0H53.9187C52.732 0 51.7698 0.962317 51.7698 2.14917V54.1143C55.4216 52.7487 59.0597 50.957 62.6749 48.7436C64.1733 47.8271 65.0851 46.182 65.0851 44.4224H65.0805Z" fill="#8BD36D"/>
+                            <path d="M63.0599 72.5083C59.2981 75.2577 55.5271 77.4757 51.7653 79.1528V100.975C51.7653 102.161 52.7275 103.124 53.9142 103.124H62.927C64.1138 103.124 65.076 102.161 65.076 100.975V73.5256C65.076 72.4899 63.8984 71.8942 63.0599 72.5083Z" fill="#8BD36D"/>
+                            <path d="M71.2158 55.8923L69.0623 53.7385C68.6041 53.2803 67.8801 53.239 67.367 53.6377C62.5238 57.3862 57.5386 60.7176 52.2738 63.128C51.5819 63.4579 50.8901 63.797 50.1707 64.0399L48.095 64.851C48.0676 64.8601 48.0355 64.8739 48.008 64.8831L45.8957 65.5338C45.5383 65.6392 45.1855 65.7766 44.8189 65.8545L43.7284 66.0974C42.2988 66.4778 40.8463 66.6611 39.3984 66.881C39.3709 66.881 39.3388 66.8902 39.3113 66.8902L37.1532 67.0643C36.4201 67.1376 35.6824 67.0826 34.9493 67.1056C29.066 67.0781 23.1781 65.6163 17.6109 63.0547C14.8297 61.7762 12.1034 60.2685 9.4916 58.5363C8.1766 57.684 6.89364 56.7721 5.63817 55.819C5.00585 55.347 4.38728 54.8612 3.78245 54.3617C3.47088 54.1189 3.17763 53.8668 2.87522 53.6194C2.3941 53.2115 1.69306 53.2115 1.21195 53.6194L-1.54642 55.9656C-2.06877 56.4101 -2.15125 57.1937 -1.72512 57.7344C-1.40438 58.1468 -1.08822 58.5272 -0.75373 58.9304C-0.17182 59.6132 0.42384 60.2685 1.03325 60.9146C2.24748 62.2161 3.56252 63.4075 4.90046 64.5852C7.62217 66.8764 10.5592 68.9706 13.7392 70.7074C16.9145 72.4533 20.3235 73.8647 23.8929 74.8316C27.4623 75.8031 31.192 76.3071 34.9309 76.3117C35.8657 76.2796 36.805 76.3117 37.7351 76.2155L40.4752 75.9451C40.5072 75.9451 40.5439 75.936 40.576 75.9314C42.395 75.6014 44.2232 75.3082 45.9782 74.7628L47.3161 74.3871C47.7606 74.2634 48.1867 74.0801 48.622 73.9288C49.4742 73.6172 50.3219 73.3056 51.1604 72.9711C51.1879 72.9619 51.2154 72.9482 51.2429 72.9344C52.8787 72.1554 54.5603 71.4543 56.0815 70.5057C62.0152 67.0964 67.1195 62.6606 71.3029 57.6153C71.7244 57.1066 71.6786 56.3597 71.2158 55.8923Z" fill="#1FB653"/>
+                            <path d="M72.87 47.1581C72.87 43.0018 76.0866 39.7391 80.4395 39.7391C84.7924 39.7391 88.0089 42.8048 88.0089 46.8648C88.0089 51.2182 84.8886 54.5817 80.4395 54.5817C75.9903 54.5817 72.87 51.3144 72.87 47.1627V47.1581Z" fill="#1FB653"/>
+                            <path d="M84.3342 62.1244H76.5493C75.5751 62.1244 74.7853 62.9143 74.7853 63.8887V101.355C74.7853 102.329 75.5751 103.119 76.5493 103.119H84.3342C85.3084 103.119 86.0983 102.329 86.0983 101.355V63.8887C86.0983 62.9143 85.3084 62.1244 84.3342 62.1244Z" fill="#8BD36D"/>
+                            <path d="M105.549 44H97.764C96.79 44 96 44.7898 96 45.7642V102.834C96 103.809 96.79 104.599 97.764 104.599H105.549C106.523 104.599 107.313 103.809 107.313 102.834V45.7642C107.313 44.7898 106.523 44 105.549 44Z" fill="#8BD36D"/>
+                            <path d="M172.285 42H164.715C163.768 42 163 42.8081 163 43.805V102.194C163 103.192 163.768 104 164.715 104H172.285C173.233 104 174 103.192 174 102.194V43.805C174 42.8081 173.233 42 172.285 42Z" fill="#8BD36D"/>
+                            <path d="M96.0008 43.5L96.0008 51.2848C96.0003 52.232 96.5391 53.0002 97.2042 53.0005L122.777 53.0121C123.442 53.0124 123.981 52.2447 123.982 51.2974L123.985 47.5001L123.985 43.7279C123.986 42.7807 123.447 42.0124 122.782 42.0121L97.2092 42.0005C96.5 42 96.0008 42.5 96.0008 43.5Z" fill="#8BD36D"/>
+                            <path d="M96.0043 65.5L96.0043 73.2848C96.0039 74.2321 96.5427 75.0002 97.2077 75.0005L122.78 75.0121C123.445 75.0124 123.985 74.2447 123.985 73.2974L123.989 69.5001L123.989 65.7279C123.989 64.7807 123.45 64.0124 122.785 64.0121L97.2127 64.0005C96.5035 64 96.0043 64.5 96.0043 65.5Z" fill="#8BD36D"/>
+                            <path d="M143.549 64H135.764C134.79 64 134 64.7899 134 65.7643V103.231C134 104.205 134.79 104.995 135.764 104.995H143.549C144.523 104.995 145.313 104.205 145.313 103.231V65.7643C145.313 64.7899 144.523 64 143.549 64Z" fill="#8BD36D"/>
+                            <path d="M132 47.419C132 43.2627 135.217 40 139.569 40C143.922 40 147.139 43.0657 147.139 47.1257C147.139 51.4791 144.019 54.8426 139.569 54.8426C135.12 54.8426 132 51.5753 132 47.4236V47.419Z" fill="#8BD36D"/>
+                            <path d="M155.004 65.7153L155.001 73.2848C155 74.2321 155.535 75.0002 156.196 75.0005L181.586 75.012C182.246 75.0123 182.782 74.2446 182.782 73.2974L182.786 65.7278C182.786 64.7806 182.251 64.0123 181.591 64.012L156.201 64.0005C155.54 64.0002 155.005 64.768 155.004 65.7153Z" fill="#8BD36D"/>
+                        </svg>
+                        </a>
+                    </div>
+                    <div class="footer-company-description mt-4">With more than 800 expert nutritionist on our platform, you can start online dietitian and diet counseling right away!</div>
+                    <div class="footer-nav-title mt-4">Get the App</div>
+                    <div class="row mx-0">
+                        <div class="col-4 p-1 col-sm-4 mt-2">
+                            <a  href="https://www.apple.com/tr/app-store/">
+                                <img width="140" height="100" loading="lazy" src="images/351333.svg" alt="download banner">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4 mb-md-0 align-items-md-center">
+                    <div>
+                        <div class="footer-nav-title">Hifit</div>
+                        <ul class="nav flex-column">
+    
+                                <li class="nav-item">
+                                    <a class="nav-link" href=dietitians.html>Dietitians</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#how-it-works">How It Works</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=index.html>Business</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=index.html>Blog</a>
+                                </li> 
+                                <li class="nav-item">
+                                    <a class="nav-link" href=index.html>FAQs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=index.html>About Us</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a 
+                                    class="nav-link" href=index.html>Contact Us</a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+                    
+    
+                    <div class="col-md-2 mb-4 mb-md-0">
+                        <div class="footer-nav-title">Privacy and Security</div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a rel="nofollow" class="nav-link"  href="#">Privacy Policy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="nofollow" class="nav-link"  href="#">User Terms and Conditions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="nofollow" class="nav-link"  href="#">Cookie Notice</a>
+                            </li>
+                        </ul>
+                    </div>   
+                </div>
+        </div>
+        <hr>
+        <div class="container copyright-seciton">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div>© Hifit</div>
+  
+                    <div>
+                        <ul class="nav social-links">
+                            <li class="nav-item">
+                                <a data-mixpanel-name="footer_social_facebook_clicked" class="nav-link" href="https://www.facebook.com/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="30" viewBox="0 0 320 512"><path fill="#56b35e" d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"/></svg>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-mixpanel-name="footer_social_twitter_clicked" class="nav-link" href="https://twitter.com/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="30" viewBox="0 0 512 512"><path fill="#56b35e" d="M459.4 151.7c.3 4.5 .3 9.1 .3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53 51.7 63.7 129.3 105.3 216.4 109.8-1.6-7.8-2.6-15.9-2.6-24 0-57.8 46.8-104.9 104.9-104.9 30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3z"/></svg>                              </a>
+                            </li>
+                            <li class="nav-item">
+                                <a data-mixpanel-name="footer_social_instagram_clicked" class="nav-link" href="https://www.instagram.com/">
+                                  <svg xmlns="http://www.w3.org/2000/svg" height="16" width="30" viewBox="0 0 448 512"><path fill="#56b35e" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>                              </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+      </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+

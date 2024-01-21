@@ -1,0 +1,135 @@
+body{
+    padding-top: 90px;
+}
+
+#navbar {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box; 
+}
+
+
+.nav-item{
+    font-weight: bold;
+}
+.nav-link{
+    margin-right: 10px;
+    margin-left: 10px;
+    color: black;
+}
+.nav-link:hover {
+    color: #4fda62;
+
+}
+.login_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 7px 25px;
+    border-radius: 17px;
+    background: #fff;
+    color: #1aa24a;
+    border: 1.5px solid #1aa24a;
+}
+.register_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 7px 25px;
+    border: none;
+    outline: none;
+    border-radius: 17px;
+    background: #1FB653;
+    color: #fff;
+
+}
+
+.login_btn:hover {
+    background: #1aa24a;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+.register_btn:hover {
+    background: #1aa24a;
+    transition: all 0.3s ease;
+}
+.main h1{
+    font-size: 4rem;
+    font-weight: 640;
+}
+h1 span {
+    color: #1FB653;
+}
+.hero-detail{
+    font-size: 20px; 
+}
+
+.how_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #fff;
+    color: #1aa24a;
+    font-size: 20px;
+
+}
+.get_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 7px 30px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: #1FB653;
+    color: #fff;
+    font-size: 20px;
+}
+.how_btn:hover {
+    background: #1aa24a;
+    transition: all 0.3s ease;
+    color: #fff;
+}
+.get_btn:hover {
+    background: #1aa24a;
+    transition: all 0.3s ease;
+}
+.start_btn{
+    text-decoration: none;
+    padding: 7px 30px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background: #1FB653;
+    color: #fff;
+    font-size: 20px;
+    margin-top:30px ;
+    
+}
+
+
+#footer{
+    background-color: rgb(244, 248, 245);
+    margin-top:50px ;
+
+}
+
+#whyyoushouldrow{
+    margin-bottom: 150px;
+}
